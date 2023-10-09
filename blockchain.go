@@ -1,3 +1,6 @@
+// Suleiman Afzal
+// 20i-1791
+// se-p
 package main
 
 import (
@@ -8,10 +11,10 @@ import (
 
 // Block represents a block in the blockchain.
 type Block struct {
-	Transaction   string
-	Nonce         int
-	PreviousHash  string
-	Hash          string
+	Transaction  string
+	Nonce        int
+	PreviousHash string
+	Hash         string
 }
 
 // Blockchain represents the blockchain itself.
@@ -20,7 +23,6 @@ type Blockchain struct {
 }
 
 // Rest of the code...
-
 
 // NewBlock creates a new block and adds it to the blockchain.
 func (bc *Blockchain) NewBlock(transaction string, nonce int, previousHash string) {
