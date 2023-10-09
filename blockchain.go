@@ -1,7 +1,4 @@
-//Suleiman Afzal
-//20i-1791
-//SE
-package assignment01bca
+package main
 
 import (
 	"crypto/sha256"
@@ -22,15 +19,18 @@ type Blockchain struct {
 	Blocks []*Block
 }
 
+// Rest of the code...
+
+
 // NewBlock creates a new block and adds it to the blockchain.
 func (bc *Blockchain) NewBlock(transaction string, nonce int, previousHash string) {
 	block := &Block{
 		Transaction:  transaction,
 		Nonce:        nonce,
 		PreviousHash: previousHash,
-		Hash:         calculateHash(transaction, nonce, previousHash),
+		Hash:         "",
 	}
-
+	block.Hash = block.calculateHash()
 	bc.Blocks = append(bc.Blocks, block)
 }
 
@@ -76,8 +76,8 @@ func InitializeBlockchain() *Blockchain {
 		Transaction:  "Genesis Block",
 		Nonce:        0,
 		PreviousHash: "",
-		Hash:         calculateHash("Genesis Block", 0, ""),
+		Hash:         "",
 	}
-
+	genesisBlock.Hash = genesisBlock.calculateHash()
 	return &Blockchain{Blocks: []*Block{genesisBlock}}
 }
