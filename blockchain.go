@@ -1,3 +1,6 @@
+//Suleiman Afzal
+//20i-1791
+//SE
 package assignment01bca
 
 import (
