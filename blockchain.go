@@ -39,9 +39,30 @@ func (bc *Blockchain) DisplayBlocks() {
 	}
 }
 
+// ChangeBlock changes the transaction of a block.
+func (b *Block) ChangeBlock(newTransaction string) {
+	b.Transaction = newTransaction
+	b.Hash = b.calculateHash()
+}
+
+// VerifyChain verifies the integrity of the entire blockchain.
+func VerifyChain(blocks []*Block) bool {
+	for i := 1; i < len(blocks); i++ {
+		currentBlock := blocks[i]
+		previousBlock := blocks[i-1]
+
+		// Check if the previous hash in the current block matches the hash of the previous block.
+		if currentBlock.PreviousHash != previousBlock.calculateHash() {
+			return false
+		}
+	}
+
+	return true
+}
+
 // calculateHash calculates the hash of a block.
-func calculateHash(transaction string, nonce int, previousHash string) string {
-	data := fmt.Sprintf("%s%d%s", transaction, nonce, previousHash)
+func (b *Block) calculateHash() string {
+	data := fmt.Sprintf("%s%d%s", b.Transaction, b.Nonce, b.PreviousHash)
 	hashBytes := sha256.Sum256([]byte(data))
 	return hex.EncodeToString(hashBytes[:])
 }
